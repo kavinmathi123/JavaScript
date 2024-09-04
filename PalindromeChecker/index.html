@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Palindrome Checker</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h2>Palindrome Checker</h2>
+        <div class="inputdiv">
+            <input type="text" id="input" placeholder="Enter the word">
+        </div>
+        <div>
+            <button type="submit" onclick="PdChecker()">Check</button>
+        </div>
+        <div id="result">
+
+        </div>
+        <script>
+            function PdChecker() {
+                const word = document.getElementById("input").value;
+                console.log(word);
+
+                // Reverse the string
+                let rev = word.split('').reverse().join('');
+                console.log(rev);
+
+                let pdWord;
+                if (word === rev)
+                    pdWord = "Palindrome";
+                else
+                    pdWord = "Not a Palindrome";
+
+                let result = document.getElementById("result");
+                result.innerHTML = pdWord;
+            }
+        </script>
+    </div>
+</body>
+
+</html>

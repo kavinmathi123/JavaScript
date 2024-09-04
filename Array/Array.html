@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <select id="branch">
+        <option value="select">Select</option>
+    </select>
+    <script>
+        // array decleration
+
+        let arr=[1,4,6,7,8];
+        console.log(arr) // diplay whole arr
+        console.log(arr.length)  // length is start from 1 
+        console.log(arr[arr.length-1]) // last value will display
+
+        // array have mix value
+
+        let mixArr=[1,2,'a',4,'b']
+        console.log(mixArr[mixArr.length-3])  
+
+        // 2 d array
+
+        let matrix=[1,2,3,[5,7],'ab']
+        console.log(matrix);
+        console.log(matrix[3]);  // index start with 0 so display [5,7]
+        console.log(matrix[3][0]); // display 5
+
+        // array methods
+
+        // 1 => concat() => join several array into one
+        
+        let arr1=[4,5,6];
+        let arr2=[1,9,3];
+        let concatArr=arr1.concat(arr2); // concatArr store single array
+        // let concatArr=arr1+arr2  => that also join but store string
+        console.log(concatArr);
+
+        // 2=> indexOf() => Return first array
+
+        let index=arr1.indexOf(6)  // 
+        console.log(index)  // diplay position of the element => 2
+
+        // 3=> join => combine element of an array into single string and return the string
+        
+        let arrVal=[1,2,4,5]; // array
+        console.log(arrVal) ; // (4) [1,2,4,5]
+        let arrToStr=arrVal.join();
+        console.log(arrToStr)  // array will convert into string => 1,2,4,5
+
+        // 4=> lastIndexOf()=> gives the last position which a given element
+
+        console.log(arrVal.lastIndexOf(4)) // display element position =>2
+
+        // 5=> push => add a new element at the end 
+
+        let pushArr=[3,4,5,6,7,8];
+        pushArr.push(9);
+        console.log(pushArr) // add 9
+
+        // 6=> pop => removes the last element of an array
+
+        let popArr=[7,3,8,5,1];
+        popArr.pop();
+        console.log(popArr); // remove 1 
+
+        // 7=> shif => remove the fisrt element in an array
+        
+        let shifArr=[0,4,3,5,6]
+        shifArr.shift()
+        console.log(shifArr) // remove 0
+
+        // 8=> unshif => adds new element to the array
+
+        let unshifArr=[3,5,6,8,9]
+        unshifArr.unshift(1);
+        console.log(unshifArr) // add new element => [1,3,5,6,8,9]
+
+        // 9=> sort => sorts elemets 
+        let sortArr=[5,7,1,3,8,2,10]
+        sortArr.sort()
+        console.log(sortArr) // error 
+        // another
+        let sortArrStr=['a','x','r','k'];
+        sortArrStr.sort();
+        console.log(sortArrStr) // ['a','k','r','x']
+
+        // 10=> toString =>converts elements to string
+        
+        let arrToString=[3,4,5,6,7];
+        let str= arrToString.toString();
+        console.log(str) // error
+        
+        // 11=> slice => returns selected array elements as a new array
+
+        let sliceArr=['apple','orange','banana','graps']
+        let end= sliceArr.slice(0,3);  // 0 is starting position and 3 is number of element skip last element 
+        console.log(end); // display [apple,orange]
+
+        // 12=> splice => adds elements in specified way and display
+
+        // 12[i] remove ele specified way 
+        let spliceArr=[2,4,6,7,8,9];
+        spliceArr.splice(2,1); // 2 is position of element and 1 is num of element
+        console.log(spliceArr) // remove 2 index
+
+        // 12[ii] remove and replace ele specified way 
+        let spliceArr2=[4,6,1,2,7,8];
+        spliceArr2.splice(1,1,5); // 1 is position of ele and another 1 is number of ele and 5 is replace value
+        console.log(spliceArr2)  // display => [4,5,1,2,7,8]
+
+        // 12[iii] didn't delete element add specified ele in spci position 
+        let spliceArr3=[8,3,45,67,7];
+        spliceArr3.splice(2,0,7) // 1 is position of ele and 0 number of ele and 7 is added ele
+        console.log(spliceArr3)
+
+        // 13 => reverse => reverse the order of the array
+        let revArr=[1,2,3,4,5,6,7];
+        revArr.reverse();
+        console.log(revArr); // [7,6,5,4,3,2,1]
+
+        // 14 => valueOf => Returns the primitive value of the spc object
+        let valArr=[1,2,4,5,6];
+        valArr.valueOf();
+        console.log(valArr) // returns the array itself
+
+        // forEach 
+
+        forEachArr = ['kavi', 'dhanu', 'sri'];
+        function print1(val) {
+             console.log(val);
+            }
+
+        forEachArr.forEach(print1);
+        // another method
+        forEachArr.forEach(val=> console.log(val.toUpperCase()))  // tmply
+        console.log(forEachArr)
+        // permant uppercase
+        forEachArr.forEach((val,index)=>{
+            forEachArr[index]=val.toUpperCase()
+        })
+        console.log(forEachArr)
+
+        // dropdown 
+
+        ddArr=['cse','ece','eee','it'];
+        ddArr.forEach(val=>{
+            const opt=document.createElement('option');
+            opt.textContent=val
+            console.log(val)
+            document.getElementById('branch').appendChild(opt)
+        })
+        
+         // Create arr that have dublicate val to change the arr in to set get unique value
+         let arrR=[1,1,2,3,4,5,6,6]
+        let SetArr=new Set(arrR)
+        console.log(arrR)  // [1,1,2,3,4,5,6,6]
+        console.log(SetArr) // {1,2,3,4,5,6}
+
+        // create set object and add ele and check ele available or not and delete ele
+        let setArr2=new Set();
+        setArr2.add(4);
+        setArr2.add('abc');
+        setArr2.add({'a':1,'b':2});
+        console.log(setArr2)
+        console.log(setArr2.has(4))  // if number is stored or not give boolean result
+        console.log(setArr2.delete(4)) // delete element and display boolean result
+        console.log(setArr2) // display after deleting element
+
+        // Set to array convert
+
+        let setToArr=Array.from(setArr2)  
+        console.log(setToArr)
+    </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*  Promises are objects that represent the eventual completion (or failure) of an asynchronous operation and its resulting value.
+         Promises provide a cleaner, more intuitive way to handle asynchronous code, such as fetching data from a server, compared to traditional callback-based approaches. */
+
+         //Creating a Promise =>
+                /* A Promise is created using the Promise constructor, which takes a single function called the executor as an argument. 
+                The executor function has two parameters: resolve and reject. resolve is called when the operation completes successfully,
+                 and reject is called when the operation fails.*/
+
+                const myPromise=new Promise((resolve,reject) =>{
+                    const success=true;
+                    if (success) 
+                    {
+                        resolve("Operation successful!");
+                    } else {
+                        reject("Operation failed!");
+                    }
+                });
+                // console.log(myPromise)
+
+        // Promise States =>
+            // A Promise has three states:
+            // Pending: Initial state, neither fulfilled nor rejected.
+            // Fulfilled: The operation completed successfully (resolve is called).
+            // Rejected: The operation failed (reject is called).
+            // A promise starts in the "pending" state, transitions to "fulfilled" if the operation is successful, or transitions to "rejected" if an error occurs.
+
+        //Promise Methods: then(), catch(), finally()=>
+            // .then(): Called when a promise is fulfilled. It takes two optional arguments: a callback for resolve and a callback for reject.
+            // .catch(): Called when a promise is rejected. It is shorthand for .then(null, reject).
+            // .finally(): Called when a promise is settled (either fulfilled or rejected). It does not receive any arguments.    
+
+            myPromise
+            .then((result) => {
+                console.log(result); // "Operation successful!"
+            })
+            .catch((error) => {
+                console.error(error); // "Operation failed!"
+            })
+            .finally(() => {
+                console.log("Promise settled (fulfilled or rejected).");
+            });
+
+        // Chaining Promises =>
+            //Promises can be chained to handle a sequence of asynchronous operations.
+            // Each .then() returns a new promise, making it possible to chain additional .then() calls.    
+
+            const fetchData = new Promise((resolve, reject) => {
+                setTimeout(() => resolve("Data fetched"), 1000);
+            });
+
+            fetchData
+            .then((result) => {
+                console.log(result); // "Data fetched"
+                return "Processing data";
+            })
+            .then((result) => {
+                console.log(result); // "Processing data"
+                return "Data processed";
+            })
+            .then((result) => {
+                console.log(result); // "Data processed"
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+        // Promise Combinators
+            //JavaScript provides several combinator methods for handling multiple promises:
+
+            //Promise.all(): Waits for all promises to be fulfilled. If any promise is rejected, it returns the rejected promise.
+
+            const promise1=new Promise((resolve,reject)=>{
+                const bookingSuccess=true;
+                if(bookingSuccess)
+                    resolve("Successee")
+                else
+                    reject("failure")
+            });
+            promise1
+                .then((result)=>{
+                    console.log(result);
+                })
+                .catch((result)=>{
+                    console.log(result)
+                })
+
+                const promise2=new Promise((resolve,reject)=>{
+                const online=false;
+                if(online)
+                    resolve("Successee")
+                else
+                    reject("failure")
+            });
+            promise2
+                .then((result)=>{
+                    console.log(result);
+                })
+                .catch((result)=>{
+                    console.log(result)
+                })    
+
+            Promise.all([promise1, promise2])
+                .then((results) => console.log(results))
+                .catch((error) => console.error(error));
+
+
+            //Promise.race(): Returns the result of the first fulfilled or rejected promise.
+
+            Promise.race([promise1, promise2])
+                .then((result) => console.log(result))
+                .catch((error) => console.error(error));       
+
+            //Promise.allSettled(): Waits for all promises to be settled (either fulfilled or rejected) and returns an array of their results.
+
+            Promise.allSettled([promise1, promise2])
+                .then((results) => console.log(results));
+
+            //Promise.any(): Waits for the first fulfilled promise and returns its value. If all promises are rejected, it returns an AggregateError.
+
+            Promise.any([promise1, promise2])
+                .then((result) => console.log(result))
+                .catch((error) => console.error(error));
+        
+        //Error Handling in Promises
+            //Errors in promises can be caught using .catch() or handled in .then() by providing a second callback for errors.
+
+            myPromise
+            .then((result) => {
+                console.log(result);
+                throw new Error("Something went wrong!");
+            })
+            .catch((error) => {
+                console.error("Caught an error:", error);
+            }); 
+
+            // Async/Await Syntax
+                // async/await is syntactic sugar over promises, providing a more readable way to work with asynchronous code. 
+                //The async keyword is placed before a function to make it return a promise, 
+                //and the await keyword is used to wait for a promise to be fulfilled.
+
+                async function fetchDataPro() {
+                try {
+                    const data = await fetch("https://api.example.com/data");
+                    const result = await data.json();
+                    console.log(result);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                } finally {
+                    console.log("Fetching operation complete.");
+                }
+                }
+
+            //  Converting Callback Functions to Promises
+                    //To convert a function that uses callbacks to a function that returns a promise, you can use the Promise constructor.
+
+                    function callbackFunction(successCallback, errorCallback) {
+                    const success = true; // Simulated condition
+                    if (success) {
+                        successCallback("Success!");
+                    } else {
+                        errorCallback("Failure!");
+                    }
+                    }
+
+                    // Converting to Promise
+                    function promiseFunction() {
+                    return new Promise((resolve, reject) => {
+                        const success = true; // Simulated condition
+                        if (success) {
+                        resolve("Success!");
+                        } else {
+                        reject("Failure!");
+                        }
+                    });
+                    }
+
+                    promiseFunction()
+                    .then((result) => console.log(result))
+                    .catch((error) => console.error(error));
+
+
+    </script>
+</body>
+</html>

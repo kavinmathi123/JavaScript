@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // set object - collection of value (values are unique)
+        // Set is a collection of unique values, meaning it cannot contain duplicate items.
+        // Unlike arrays, Sets do not have any keys; they only have values. 
+        //Set objects are useful when you need to store unique values of any type, whether primitive or object references.
+        // Key Concepts of Set in JavaScript
+
+       // creating a set
+
+        const mySet = new Set(); // we can create a Set using the Set constructor.
+        const mySet1 = new Set([1, 2, 3, 4, 5]); //can also initialize a Set with an iterable (like an array) to populate it with values.
+        console.log(mySet1)
+
+        // Adding Elements to a Set
+            //Use the .add() method to add elements to a Set.
+            //Duplicates are automatically ignored
+
+        const mySet3 = new Set();
+        mySet3.add(1); // Set { 1 }
+        mySet3.add(2); // Set { 1, 2 }
+        mySet3.add(2); // Set { 1, 2 } - Duplicate ignored
+
+        // Removing Elements from a Set
+            //Use the .delete() method to remove a specific element.
+
+            mySet3.delete(2); // Removes 2 from the set
+
+        //Checking for the Presence of an Element
+            //Use the .has() method to check if a Set contains a specific element.
+
+            mySet3.has(1); // true
+            mySet3.has(3); // false
+
+        //Getting the Size of a Set
+            //Use the .size property to get the number of elements in a Set.
+
+            mySet3.size; // 1
+            console.log(mySet3) 
+
+        //Clearing All Elements from a Set
+            //Use the .clear() method to remove all elements from a Set.
+
+            mySet3.clear(); // Set becomes empty
+
+        //Iterating Through a Set
+            //Set objects are iterable,
+            // so you can use for...of loops, forEach(), or the spread operator to iterate over the elements. 
+            
+            const mySet4 = new Set([1, 2, 3]);
+
+                // Using for...of
+                for (let value of mySet4) {
+                console.log(value);
+                }
+
+                // Using forEach
+                mySet4.forEach((value) => {
+                console.log(value);
+                });
+
+                // Using spread operator
+                console.log([...mySet4]); // [1, 2, 3]
+
+        //Converting Between Sets and Arrays
+            //To convert a Set to an array, you can use the spread operator or Array.from()
+            
+            const mySet5 = new Set([1, 2, 3]);
+            const myArray = [...mySet5]; // [1, 2, 3]
+            const myArray2 = Array.from(mySet5); // [1, 2, 3]
+            
+            //To convert an array to a Set, you can use the Set constructor.
+            
+            const myArray6 = [1, 2, 2, 3];
+            const mySet7 = new Set(myArray6); // Set { 1, 2, 3 } - duplicates removed
+
+        //Using Set Operations
+            //Union: Combine two sets into one.
+
+            const setA = new Set([1, 2, 3]);
+            const setB = new Set([3, 4, 5]);
+            const union = new Set([...setA, ...setB]); // Set { 1, 2, 3, 4, 5 }
+
+            //Intersection: Elements that are common in both sets.
+
+            const intersection = new Set([...setA].filter(x => setB.has(x))); // Set { 3 }
+                    // Convert setA to an Array =>We use the spread operator [...] to convert setA into an array.
+                    /* The .filter() method creates a new array with all elements that pass the test implemented by the provided function. 
+                    In this case, the function checks if each element x in setA is present in setB */
+
+            // Difference: Elements in one set that are not in another.
+
+            const difference = new Set([...setA].filter(x => !setB.has(x))); // Set { 1, 2 }
+
+        //WeakSet
+                /* A WeakSet is similar to a Set but only allows objects as values and does not prevent garbage collection if no other references to an object exist. 
+                It has limited methods (add, delete, and has) and does not support iteration or size property.*/
+
+                const weakSet = new WeakSet();
+                const obj = {};
+                weakSet.add(obj);
+                console.log(weakSet)
+
+        </script>
+</body>
+</html>

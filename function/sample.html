@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Kavinmathi</h1>
+    <script>  
+
+        // first function will declarate and then called
+
+        // function declaration
+        function isPositive(num){  // parameter
+            return num>0
+        }
+        console.log(isPositive(-4));  // argument
+
+        // without parameter without return
+
+        function sayHello(){
+            console.log("hello")
+        }
+        sayHello();
+
+        // pass two parameter
+
+        function add(a,b){
+            return a+b;
+        }
+        console.log(add(5,8));  
+        console.log(add)  // add is act as a variable so whole cunction will store add variable and show that.
+        console.log(typeof(add))   // that so add is a function
+
+        //  first call function and then give function definition  -- called hositing  
+        // javascrip inteperter help to move the order so need worry about order
+
+        console.log(multiple(6,8));
+        function multiple(c,d)
+        {
+            return c*d
+        }
+
+        // defalut parameter
+
+        function defalut(name ='there'){  // default value
+            console.log("hi",name);
+        }
+        defalut('kavi')  // we give name display hi kavi
+        defalut() // in this case take default value
+
+        // recursion - function calling itself
+            //factorial - first n number 
+
+        function factorial(n){  // (1=>5)(2=>4)
+            if(n==1)
+                return 1   // (1=>false) (2=>false)
+            return n*(factorial(n-1))   // (1=> 5 * (5-1)=> 5*4 =>20) 
+        }
+        console.log(factorial(5))
+
+        // function expression 
+        // assigned to a variable as object
+
+        let x=100 // that is variable declaration same as expression 
+
+        let express= function(z){
+            return z*2;
+        }
+        console.log(express(5))
+        console.log(express)  // display whole function
+
+        // Example of function expression =>Array sum
+        
+        let arr=[2,3,4,5,6]
+        let arraySum= function(arr){
+            let sum=0;
+            for(let val of arr){
+            sum+=val
+            }
+            return sum
+        }
+        console.log(arraySum(arr))  // that argument will store in copy of parameter
+
+        // Arrow Function
+
+        let volume = (l,b,h)=>{  
+            return l*b*h
+        }
+        console.log(volume(4,5,7))
+
+        // spread operator
+
+        let product=function(...args){
+            let result=1;
+            for(let val of args)
+        {
+            result *=val;
+        }
+        return result
+        }
+        console.log(product(2,3,4,))  
+
+        // generators => generates value one by one
+        
+        function *indexGenerator(){
+            let index=1;
+            while(true){
+                yield index ++;
+            }
+        }
+        indexGenerator() // return generator object
+        const gen=indexGenerator()
+        console.log(gen.next().value)
+        console.log(gen.next().value)
+        console.log(gen.next().value)
+
+        // callback function => function passed as argument
+
+        function greetConsole(name){
+            console.log("hello",name)
+        }
+        function greetHeading(name){
+            const heading=document.querySelector('h1');
+            heading.innerHTML="hello "+name
+        }
+        function greet(callback){
+            callback('ram')
+        }
+        greet(greetHeading)
+        greet(greetConsole)
+    </script>
+</body>
+</html>

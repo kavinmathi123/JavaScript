@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        //Map is a collection of key-value pairs where both keys and values can be of any data type.
+        // Unlike regular JavaScript objects, which only allow strings and symbols as keys, a Map can have keys of any type, including objects, functions, and primitives.
+
+        //Creating a Map
+            //You can create a Map using the Map constructor
+
+            const myMap = new Map();
+
+            //You can also initialize a Map with an iterable (like an array of arrays) to populate it with key-value pairs.
+
+            const myMap1=new Map([
+                ['key1','value1'],  // key,value
+                ['key2','value2']
+            ])
+            console.log(myMap1)
+        //Adding Elements to a Map
+            //Use the .set() method to add or update key-value pairs in a Map.
+
+            const myMap2 = new Map();
+            myMap2.set('key1', 'value1'); // Map { 'key1' => 'value1' }
+            myMap2.set('key2', 'value2'); // Map { 'key1' => 'value1', 'key2' => 'value2' }
+            console.log(myMap2)
+
+        //Accessing Values in a Map
+            //Use the .get() method to retrieve a value by its key.
+
+            myMap.get('key1'); // 'value1'
+            myMap.get('key3'); // undefined (if key does not exist)
+
+        //Checking for the Presence of a Key
+            //Use the .has() method to check if a Map contains a specific key.
+
+            myMap.has('key1'); // true
+            myMap.has('key3'); // false
+
+        //Removing Elements from a Map:
+            //Use the .delete() method to remove a specific key-value pair by its key.
+        
+            myMap.delete('key1'); // true (removes 'key1' and its value from the map    
+
+        //Getting the Size of a Map:
+            //Use the .size property to get the number of key-value pairs in a Map.
+
+        myMap.size; // 1 (if 'key1' was deleted and only 'key2' remains)
+    
+        //Clearing All Elements from a Map:     
+            //Use the .clear() method to remove all key-value pairs from a Map.
+
+        myMap.clear(); // Clears the map
+        myMap.size; // 0
+
+        //Iterating Through a Map:
+            //Map objects are iterable, so you can use for...of loops, forEach(), or destructuring to iterate over the key-value pairs.
+
+            const myMap3 = new Map([
+                ['key1', 'value1'],
+                ['key2', 'value2']
+            ]);
+
+            // Using for...of to iterate through keys
+
+            for (const [key, value] of myMap3) {
+                console.log(key, value);
+            }
+
+            // Using forEach
+
+            myMap.forEach((value, key) => {
+                console.log(key, value);
+            });
+
+            // Using destructuring 
+            console.log([...myMap]); // [ [ 'key1', 'value1' ], [ 'key2', 'value2' ] ]
+
+        //Iterating Over Keys, Values, and Entries:
+
+            const myMap4 = new Map([
+                ['key1', 'value1'],
+                ['key2', 'value2']
+            ]);
+
+            // Iterating over keys
+                //.keys(): Returns an iterator object containing all the keys in the Map.
+
+            for (const key of myMap4.keys()) {
+                console.log(key);   // key1 next line key2
+            }
+
+            // Iterating over values
+                //.values(): Returns an iterator object containing all the values in the Map.
+
+            for (const value of myMap4.values()) {
+                console.log(value);  // value1 next line value2
+            }
+
+            // Iterating over entries
+                //.entries(): Returns an iterator object containing all the [key, value] pairs in the Map (this is the default iteration for Map).
+
+            for (const [key, value] of myMap4.entries()) {
+                console.log(key, value);  // key1 value1 next line key2 value2
+            }
+
+        //Converting Between Maps and Objects or Arrays
+            //To convert a Map to an object
+
+            const myMap5 = new Map([
+                ['key1', 'value1'],
+                ['key2', 'value2']
+            ]);
+            console.log(myMap5)
+            const obj = Object.fromEntries(myMap5); // { key1: 'value1', key2: 'value2' }
+            console.log(obj)
+
+            //To convert an object to a Map
+            
+            const obj1 = { key1: 'value1', key2: 'value2' };
+            const myMap6 = new Map(Object.entries(obj1)); // Map { 'key1' => 'value1', 'key2' => 'value2' }
+
+            //To convert a Map to an array
+
+            const myMap7 = new Map([
+                ['key1', 'value1'],
+                ['key2', 'value2']
+            ]);
+
+            const array1 = [...myMap7]; // [ ['key1', 'value1'], ['key2', 'value2'] ]
+
+            //To convert an array to a Map
+
+            const array2 = [['key1', 'value1'], ['key2', 'value2']];
+            const myMap8 = new Map(array2); // Map { 'key1' => 'value1', 'key2' => 'value2' }
+
+    </script>
+</body>
+</html>

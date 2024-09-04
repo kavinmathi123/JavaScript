@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //async Functions
+            //An async function is a function that is declared with the async keyword.
+            //When called, an async function returns a Promise.
+            //This Promise will resolve with the value returned by the function or reject with an error if an exception is thrown.
+
+            async function fatchData() {
+                return 'data-fatched'
+            }
+            fatchData().then((result)=>console.log(result));
+
+        //The await Keyword
+            //The await keyword can only be used inside an async function. It is used to pause the execution of the function until the Promise is resolved or rejected. This allows for writing asynchronous code that appears more like synchronous code, making it easier to understand and maintain.
+
+            async function getData() {
+            const promise = new Promise((resolve) => {
+                setTimeout(() => resolve("Data fetched after 2 seconds!"), 2000);
+            });
+
+            const result = await promise; // Waits for the promise to resolve
+            console.log(result); // Output: "Data fetched after 2 seconds!"
+            }
+            getData(); 
+            
+        //Error Handling with try...catch
+            //Error handling with async/await is straightforward and can be done using try...catch blocks. If a promise is rejected or an error is thrown inside the async function, it can be caught in the catch block.
+
+            async function getDataWithError() {
+            try {
+                const promise = new Promise((_, reject) => {
+                setTimeout(() => reject("Error fetching data!"), 2000);
+                });
+
+                const result = await promise; // This will throw an error
+                console.log(result);
+            } catch (error) {
+                console.error("Caught an error:", error); // Output: "Caught an error: Error fetching data!"
+            }
+            }
+            getDataWithError();
+    
+        //Sequential Execution: If you use await for each asynchronous call, they will run sequentially, one after the other.
+        // This may not be efficient when you want multiple asynchronous tasks to run in parallel.
+
+            async function sequentialExecution() {
+            const result1 = await new Promise((resolve) =>
+                setTimeout(() => resolve("First Task Done"), 2000)
+            );
+            console.log(result1); // After 2 seconds
+
+            const result2 = await new Promise((resolve) =>
+                setTimeout(() => resolve("Second Task Done"), 2000)
+            );
+            console.log(result2); // After 4 seconds in total
+            }
+            sequentialExecution();
+
+        //Concurrent Execution: To run multiple asynchronous tasks concurrently,
+        // you can call the promises first and then await their results using Promise.all().
+
+            async function concurrentExecution() {
+            const task1 = new Promise((resolve) =>
+                setTimeout(() => resolve("First Task Done"), 2000)
+            );
+            const task2 = new Promise((resolve) =>
+                setTimeout(() => resolve("Second Task Done"), 2000)
+            );
+
+            const [result1, result2] = await Promise.all([task1, task2]);
+            console.log(result1); // After 2 seconds
+            console.log(result2); // After 2 seconds
+            }
+            concurrentExecution();    
+
+        //Using Promise.all() with async/await
+            //Promise.all() is often used with async/await to run multiple asynchronous tasks concurrently and wait for all of them to complete.
+
+            async function fetchMultipleData() {
+                const promise1 = new Promise((resolve) => setTimeout(() => resolve("Data 1"), 1000));
+                const promise2 = new Promise((resolve) => setTimeout(() => resolve("Data 2"), 2000));
+                const promise3 = new Promise((resolve) => setTimeout(() => resolve("Data 3"), 3000));
+
+                const results = await Promise.all([promise1, promise2, promise3]);
+                console.log(results); // Output: [ 'Data 1', 'Data 2', 'Data 3' ] after 3 seconds
+            }
+        
+        //Error Propagation in async Functions
+            //Errors in async functions can be propagated just like synchronous code.
+            // If an error is not caught inside an async function, it will be propagated to the caller.
+
+            async function mayThrowError() {
+            throw new Error("Something went wrong!!!");
+            }
+
+            async function handleError() {
+            try {
+                await mayThrowError();
+            } catch (error) {
+                console.error("Caught error:", error.message); // Output: "Caught error: Something went wrong!"
+            }
+            }
+
+            handleError();    
+
+        //Fetching Data from an API
+
+            async function getUserData() {
+            try {
+                const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+                const data = await response.json();
+                console.log("User Data:", data);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+            }
+
+            getUserData();    
+
+        //Simulating Multiple Asynchronous Operations
+
+            async function simulateAsyncOperations() {
+            try {
+                const [task1, task2, task3] = await Promise.all([
+                new Promise((resolve) => setTimeout(() => resolve(" 1 Complete"), 1000)),
+                new Promise((resolve) => setTimeout(() => resolve(" 2 Complete"), 2000)),
+                new Promise((resolve) => setTimeout(() => resolve(" 3 Complete"), 3000)),
+                ]);
+
+                console.log(task1); // After 3 seconds
+                console.log(task2); // After 3 seconds
+                console.log(task3); // After 3 seconds
+            } catch (error) {
+                console.error("Error in one of the tasks:", error);
+            }
+            }
+
+            simulateAsyncOperations();
+    
+    </script>
+</body>
+</html>
