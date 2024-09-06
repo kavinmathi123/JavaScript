@@ -1,7 +1,15 @@
 // number
+    // Represents both integer and floating-point numbers
+    /* Common Methods: Math.round(), Math.floor(), Math.ceil(), Math.random(), Number.parseInt(),
+     Number.parseFloat() */ 
+
+    let num=7; //Integer
     let example=7.45;
-    console.log(example);  // 7.45
+    console.log(example);  // 7.45 floating-point number
     console.log(typeof example);  // number 
+
+    /* Use Number.isNaN() to check for NaN values.
+        Use Number.parseInt() and Number.parseFloat() to convert strings to numbers.*/
 
     // parseInt => if we want integer number 
 

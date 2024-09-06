@@ -46,7 +46,7 @@ class Member {
         console.log(`"${book.title}" is not borrowed by ${this.name}`);
       }
     }
-  
+
     // Method to display borrowed books
     displayBorrowedBooks() {
       if (this.borrowedBooks.length === 0) {
