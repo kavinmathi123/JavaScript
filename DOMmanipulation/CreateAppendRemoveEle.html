@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="old"></div>
+    <script>
+
+        //Creating a new element 
+
+        const element=document.createElement('div');
+        element.textContent="This is a new Div";
+
+        //Appending the new element to an existing element
+        document.body.appendChild(element);// Adds newDiv as the last child of the body
+
+        //Removing an element
+        const div=document.getElementById('old');
+        div.remove();
+    </script>
+</body>
+</html>

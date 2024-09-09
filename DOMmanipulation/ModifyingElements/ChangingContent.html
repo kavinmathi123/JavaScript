@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2 id="myElement">Hello</h2>
+    <button onclick="change()">Change</button>
+    <script>
+        /* You can change the content of an element using properties like innerHTML, textContent, or innerText.
+innerHTML: Gets or sets the HTML content inside an element.
+textContent: Gets or sets the text content inside an element (without HTML). */ 
+
+    const element = document.getElementById('myElement');
+    function change(){
+    element.innerHTML = '<strong>New Content</strong>'; // Sets HTML content
+    element.textContent = 'New Plain Text Content'; // Sets plain text content
+}
+    </script>
+</body>
+</html>
+
+
+

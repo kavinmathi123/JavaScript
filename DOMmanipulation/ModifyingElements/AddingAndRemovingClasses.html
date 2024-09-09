@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="myElement" class="sample">
+    </div>
+    <script>
+        //You can add, remove, toggle, or check for a class using the classList property.
+
+        const element = document.getElementById('myElement');
+        element.classList.add('new-class'); // Adds a class
+        element.classList.remove('sample'); // Removes a class
+        element.classList.toggle('active'); // Toggles a class
+        console.log(element.classList.contains('new-class')); // Checks if it contains a class
+
+    </script>
+</body>
+</html>

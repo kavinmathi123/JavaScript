@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a>Link</a>
+    <script>
+        /* You can get, set, or remove attributes of an element using methods like 
+        getAttribute(), setAttribute(), and removeAttribute().*/ 
+
+        const link=document.querySelector('a');
+        link.setAttribute('href','https://www.google.com/'); // Sets the href attribute
+        console.log(link.getAttribute('href')); // Gets the href attribute
+        link.removeAttribute('href'); // Removes the href attribute
+    </script>
+</body>
+</html>
